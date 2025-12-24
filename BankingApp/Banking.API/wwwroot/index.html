@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoBank AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Auth View -->
+        <div id="auth-view" class="glass-panel">
+            <h1>NeoBank</h1>
+            <div class="form-group">
+                <label>Account Owner Name</label>
+                <input type="text" id="ownerName" placeholder="e.g. Alice">
+            </div>
+            <div class="form-group">
+                <label>Account Type</label>
+                <select id="accountType">
+                    <option value="Savings">Savings</option>
+                    <option value="Checking">Checking</option>
+                </select>
+            </div>
+            <button class="btn" onclick="createAccount()">Create Account</button>
+            <div style="text-align: center; margin-top: 15px; font-size: 0.9rem; color: #64748b;">
+                Or login with existing Account Number
+            </div>
+             <div class="form-group" style="margin-top: 10px;">
+                <input type="text" id="loginAccountNumber" placeholder="Account Number">
+            </div>
+            <button class="btn btn-secondary" onclick="login()">Login</button>
+        </div>
+
+        <!-- Dashboard View -->
+        <div id="dashboard-view" class="glass-panel hidden">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="margin:0; font-size: 1.5rem;">Dashboard</h2>
+                <button class="btn btn-secondary" style="width: auto; padding: 5px 15px; margin:0;" onclick="logout()">Exit</button>
+            </div>
+            
+            <div class="balance-card">
+                <div style="color: #94a3b8; margin-bottom: 5px;">Total Balance</div>
+                <div class="balance-amount" id="displayBalance">$0.00</div>
+                <div style="font-size: 0.9rem; margin-top: 10px; color: #64748b;" id="displayAccountInfo"></div>
+            </div>
+
+            <div class="grid-2">
+                <button class="btn" onclick="showModal('deposit')">Deposit</button>
+                <button class="btn btn-secondary" style="margin-top: 1rem; background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3);" onclick="showModal('withdraw')">Withdraw</button>
+            </div>
+            <button class="btn" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);" onclick="showModal('transfer')">Transfer Money</button>
+
+            <h3 style="margin-top: 2rem; font-size: 1.1rem; color: #94a3b8;">Recent Activity</h3>
+            <div id="transactionList" class="transaction-list">
+                <!-- Transactions will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Modal -->
+    <div id="actionModal" class="glass-panel notification" style="top: 50%; left: 50%; right: auto; transform: translate(-50%, -50%) scale(0.9); opacity: 0; pointer-events: none;">
+        <h2 id="modalTitle">Action</h2>
+        <div class="form-group">
+            <label id="modalLabel">Amount</label>
+            <input type="number" id="modalAmount" placeholder="0.00">
+        </div>
+        <div class="form-group hidden" id="destAccountGroup">
+            <label>Destination Account Number</label>
+            <input type="text" id="modalDestAccount">
+        </div>
+        <div class="grid-2">
+            <button class="btn" onclick="executeAction()">Confirm</button>
+            <button class="btn btn-secondary" onclick="hideModal()">Cancel</button>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Build and Release
+bin/
+obj/
+*.dll
+*.pdb
+
+# User-specific
+*.user
+*.suo
+.vs/
+
+# OS specific
+.DS_Store
+
+# Test Results
+TestResults/
+
+# Playwright
+.playwright/
+/Banking.API/bin/
+/Banking.Core/bin/
+/Banking.Tests/bin/
+/Banking.E2ETests/bin/
